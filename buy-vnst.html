@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Buy VNST Tokens directly from V Network Services">
+  <title>Buy VNST Tokens | V Network Services</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/android-chrome-512x512 (2).png">
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <style>
+    :root {
+      --gold: #FFD700;
+      --dark-gold: #C5A000;
+      --black: #000000;
+      --dark-gray: #1A1A1A;
+      --medium-gray: #333333;
+      --light-gray: #4D4D4D;
+      --white: #FFFFFF;
+    }
+
+    .swap-main {
+      padding: 1rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+    
+    .swap-container {
+      margin: 1rem auto;
+      background-color: var(--dark-gray);
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .swap-interface {
+      background-color: var(--medium-gray);
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    
+    .swap-header {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--gold);
+    }
+
+    @media (min-width: 768px) {
+      .swap-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+    
+    .swap-header h2 {
+      color: var(--gold);
+      font-size: 1.5rem;
+      margin: 0;
+    }
+    
+    .swap-btn {
+      background-color: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      font-size: 1rem;
+    }
+    
+    .swap-btn:hover {
+      background-color: var(--dark-gold);
+      transform: translateY(-2px);
+    }
+    
+    .swap-btn:disabled {
+      background-color: var(--light-gray);
+      color: var(--medium-gray);
+      cursor: not-allowed;
+      transform: none;
+      opacity: 0.7;
+    }
+
+    @media (min-width: 768px) {
+      .swap-btn {
+        width: auto;
+      }
+    }
+    
+    .swap-info-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: rgba(255, 215, 0, 0.1);
+      border-radius: 5px;
+    }
+
+    @media (min-width: 600px) {
+      .swap-info-panel {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+    }
+    
+    .swap-info-item {
+      display: flex;
+      flex-direction: column;
+      min-width: 120px;
+    }
+    
+    .swap-info-item span:first-child {
+      color: var(--gold);
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+    
+    .swap-input-group {
+      margin-bottom: 15px;
+    }
+    
+    .swap-input-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--gold);
+      font-size: 0.95rem;
+    }
+    
+    .swap-input-group input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 5px;
+      border: 1px solid var(--light-gray);
+      background-color: var(--dark-gray);
+      color: var(--white);
+      margin-bottom: 10px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    
+    .swap-quote-result {
+      background-color: rgba(255, 215, 0, 0.1);
+      padding: 15px;
+      border-radius: 5px;
+      margin: 15px 0;
+      border: 1px solid var(--gold);
+    }
+    
+    .swap-quote-result p {
+      color: var(--gold);
+      font-weight: bold;
+      text-align: center;
+      margin: 0;
+      font-size: 1rem;
+    }
+    
+    .swap-action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    @media (min-width: 480px) {
+      .swap-action-buttons {
+        flex-direction: row;
+      }
+    }
+    
+    .swap-action-buttons button {
+      flex: 1;
+    }
+    
+    .swap-status-messages {
+      min-height: 50px;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      background-color: rgba(255, 215, 0, 0.1);
+    }
+    
+    .swap-error-message {
+      color: #FF6B6B;
+    }
+    
+    .swap-success-message {
+      color: #6BFF6B;
+    }
+    
+    .swap-hidden {
+      display: none !important;
+    }
+    
+    #walletInfo {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      font-size: 0.9rem;
+    }
+    
+    #walletInfo p {
+      margin: 0;
+    }
+
+    .contract-info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    @media (min-width: 480px) {
+      .contract-info {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+    
+    #vnstContract {
+      font-size: 0.8rem;
+      word-break: break-all;
+      color: var(--gold);
+      flex: 1;
+    }
+
+    .mobile-instructions {
+      background-color: rgba(255, 215, 0, 0.1);
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      border: 1px dashed var(--gold);
+      display: none;
+    }
+
+    .mobile-instructions h3 {
+      color: var(--gold);
+      margin-top: 0;
+      font-size: 1rem;
+    }
+
+    .mobile-instructions ol {
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+
+    .mobile-instructions li {
+      margin-bottom: 5px;
+    }
+    
+    .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0, 31, 63, 0.9);
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  height: 50px;
+  margin-right: 1.5rem;
+  display: block;
+}
+
+#navMenu {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+}
+
+#navMenu li {
+  display: inline-block;
+}
+
+#navMenu a {
+  color: var(--text-color);
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+#navMenu a:hover,
+#navMenu a.active {
+  color: var(--accent-color);
+}
+
+.mobile-menu-btn {
+  display: none;
+}
+
+/* Responsive Navbar for Mobile */
+@media (max-width: 900px) {
+  .navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    position: relative;
+  }
+  .logo {
+    margin-right: 0;
+  }
+  .mobile-menu-btn {
+    display: block;
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    font-size: 2.2rem;
+    margin-left: auto;
+    z-index: 1001;
+  }
+  #navMenu {
+    display: none;
+    flex-direction: column;
+    background: rgba(0, 31, 63, 0.98);
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 85vw;
+    min-width: 180px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    padding: 1.5rem 1rem;
+    z-index: 999;
+  }
+  #navMenu.show {
+    display: flex;
+  }
+  #navMenu li {
+    margin-bottom: 1.2rem;
+  }
+  #navMenu li:last-child {
+    margin-bottom: 0;
+  }
+}
+/* Always display navMenu as row on large screens */
+@media (min-width: 901px) {
+  #navMenu {
+    display: flex !important;
+    position: static;
+    background: transparent;
+    flex-direction: row;
+    padding: 0;
+    box-shadow: none;
+    border-radius: 0;
+    width: auto;
+  }
+  .mobile-menu-btn {
+    display: none;
+  }
+}
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo-container">
+      <img src="assets/logo.png" alt="VNST Logo" class="logo">
+    </div>
+    <nav>
+      <ul id="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="stake.html">Stake</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="buy-vnst.html" class="active">Buy VNST</a></li>
+        <li><a href="swap.html">Swap</a></li>
+      </ul>
+      <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+    </nav>
+  </header>
+
+  <main class="swap-main">
+    <div id="mobileInstructions" class="mobile-instructions">
+      <h3>Mobile Users Instructions:</h3>
+      <ol>
+        <li>Open Trust Wallet/MetaMask/SafePal app</li>
+        <li>Navigate to DApp browser</li>
+        <li>Enter our website URL</li>
+        <li>Connect your wallet</li>
+        <li>Ensure you're on BSC Mainnet</li>
+      </ol>
+    </div>
+
+    <div class="swap-container">
+      <div class="swap-interface">
+        <div class="swap-header">
+          <h2>VNST Token Swap</h2>
+          <button id="connectWalletBtn" class="swap-btn">Connect Wallet</button>
+        </div>
+
+        <div id="walletInfo" class="swap-hidden">
+          <p>Connected: <span id="walletAddress"></span></p>
+          <p>USDT Balance: <span id="usdtBalance">0</span></p>
+        </div>
+
+        <div class="swap-info-panel">
+          <div class="swap-info-item">
+            <span>VNST Price:</span>
+            <span id="vnstPrice">Loading...</span>
+          </div>
+          <div class="swap-info-item">
+            <span>Available VNST:</span>
+            <span id="availableVNST">Loading...</span>
+          </div>
+          <div class="swap-info-item">
+            <span>Minimum Purchase:</span>
+            <span id="minBuyAmount">Loading...</span>
+          </div>
+        </div>
+
+        <div class="swap-input-group">
+          <label for="vnstAmount">VNST Amount</label>
+          <input type="number" id="vnstAmount" placeholder="Enter VNST amount" min="0" step="1">
+          <div id="quoteResult" class="swap-quote-result swap-hidden">
+            <p>You will pay: <span id="usdtAmount">0</span> USDT</p>
+          </div>
+        </div>
+
+        <div class="swap-action-buttons">
+          <button id="approveBtn" class="swap-btn" disabled>Approve USDT</button>
+          <button id="buyBtn" class="swap-btn" disabled>Buy VNST</button>
+        </div>
+
+        <div class="contract-info">
+          <p>VNST Contract: <span id="vnstContract">Loading...</span></p>
+          <button id="copyContractBtn" class="swap-btn">Copy Address</button>
+        </div>
+      </div>
+
+      <div id="statusMessages" class="swap-status-messages"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p class="wallet-note">
+      मोबाइल पर: किसी भी Web3 वॉलेट (MetaMask, Trust Wallet, आदि) से कनेक्ट करें
+    </p>
+    <p>© 2025 V Network Services. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+  <script>
+    const CONFIG = {
+      mainnet: {
+        vnstSwapAddress: "0x2536ace7EbfB5055B96cAB22a66218F00b8BCa26", 
+        vnstTokenAddress: "0xF9Bbb00436B384b57A52D1DfeA8Ca43fC7F11527", 
+        usdtTokenAddress: "0x55d398326f99059fF775485246999027B3197955", 
+        chainId: "0x38", 
+        rpcUrl: "https://bsc-dataseed.binance.org/"
+      }
+    };
+
+    let web3;
+    let swapContract;
+    let vnstToken;
+    let usdtToken;
+    let currentAccount = null;
+    let minBuyAmount = 0;
+    let vnstDecimals = 18;
+    let contractsInitialized = false;
+
+    document.addEventListener('DOMContentLoaded', function() {
+      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        document.getElementById('mobileInstructions').style.display = 'block';
+      }
+      
+      initSwap();
+    });
+
+    async function initSwap() {
+      await setupEventListeners();
+      await checkWalletConnection();
+      updateUI();
+    }
+
+    async function setupEventListeners() {
+      document.getElementById('connectWalletBtn').addEventListener('click', connectWallet);
+      document.getElementById('approveBtn').addEventListener('click', approveUSDT);
+      document.getElementById('buyBtn').addEventListener('click', buyVNST);
+      document.getElementById('copyContractBtn').addEventListener('click', copyContractAddress);
+      mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    }
+
+    function toggleMobileMenu() {
+      navMenu.classList.toggle('show');
+    }
+
+
+    function setupInputListener() {
+      const vnstAmountInput = document.getElementById('vnstAmount');
+      vnstAmountInput.addEventListener('input', async () => {
+        if (currentAccount && contractsInitialized) {
+          await calculateQuote();
+        }
+      });
+    }
+
+    function toTokenUnits(amount, decimals = 18) {
+      return web3.utils.toBN(amount).mul(web3.utils.toBN(10).pow(web3.utils.toBN(decimals)));
+    }
+
+    async function calculateQuote() {
+      try {
+        const vnstAmountInput = document.getElementById('vnstAmount').value;
+        
+        if (!vnstAmountInput || isNaN(vnstAmountInput)) {
+          document.getElementById('quoteResult').classList.add('swap-hidden');
+          return;
+        }
+        
+        const vnstAmount = toTokenUnits(vnstAmountInput);
+        const minBuy = web3.utils.toBN(minBuyAmount);
+        
+        if (vnstAmount.lt(minBuy)) {
+          document.getElementById('quoteResult').classList.add('swap-hidden');
+          return;
+        }
+        
+        const usdtAmount = await swapContract.methods.getQuote(vnstAmount.toString()).call();
+        const usdtDecimals = await usdtToken.methods.decimals().call();
+        
+        document.getElementById('usdtAmount').textContent = formatUnits(usdtAmount, usdtDecimals);
+        document.getElementById('quoteResult').classList.remove('swap-hidden');
+        
+        const isApproved = await checkApprovalStatus(vnstAmount.toString());
+        document.getElementById('approveBtn').disabled = isApproved;
+        document.getElementById('buyBtn').disabled = !isApproved;
+        
+      } catch (error) {
+        console.error('Quote calculation error:', error);
+        document.getElementById('quoteResult').classList.add('swap-hidden');
+        showMessage('Error calculating quote. Please try again.', 'error');
+      }
+    }
+
+    async function checkWalletConnection() {
+      if (window.ethereum || window.BinanceChain) {
+        try {
+          const provider = window.ethereum || window.BinanceChain;
+          const accounts = await provider.request({ method: 'eth_accounts' });
+          
+          if (accounts.length > 0) {
+            currentAccount = accounts[0];
+            setupWalletEvents();
+            
+            // Initialize contracts only when wallet is connected
+            await initContracts();
+            await updateWalletInfo();
+          }
+        } catch (error) {
+          console.error("Error checking wallet connection:", error);
+        }
+      }
+    }
+
+    function setupWalletEvents() {
+      const provider = window.ethereum || window.BinanceChain;
+      if (provider) {
+        provider.on('accountsChanged', async (accounts) => {
+          currentAccount = accounts.length > 0 ? accounts[0] : null;
+          updateUI();
+          if (currentAccount) {
+            await initContracts();
+            await updateWalletInfo();
+            await calculateQuote();
+          }
+        });
+        
+        provider.on('chainChanged', () => {
+          window.location.reload();
+        });
+      }
+    }
+
+    async function updateWalletInfo() {
+      try {
+        if (!usdtToken || !currentAccount) return;
+        
+        const usdtDecimals = await usdtToken.methods.decimals().call();
+        const balance = await usdtToken.methods.balanceOf(currentAccount).call();
+        
+        document.getElementById('walletAddress').textContent = shortenAddress(currentAccount);
+        document.getElementById('usdtBalance').textContent = formatUnits(balance, usdtDecimals);
+        document.getElementById('walletInfo').classList.remove('swap-hidden');
+      } catch (error) {
+        console.error("Error updating wallet info:", error);
+      }
+    }
+
+    async function connectWallet() {
+      const provider = window.ethereum || window.BinanceChain;
+      
+      if (!provider) {
+        showMessage('Please install MetaMask, Trust Wallet or SafePal', 'error');
+        return;
+      }
+
+      try {
+        const accounts = await provider.request({ method: 'eth_requestAccounts' });
+        currentAccount = accounts[0];
+        setupWalletEvents();
+        
+        web3 = new Web3(provider);
+        
+        await initContracts();
+        await updateWalletInfo();
+        
+        showMessage('Wallet connected successfully', 'success');
+        updateUI();
+        setupInputListener();
+        
+      } catch (error) {
+        if (error.code === 4001) {
+          showMessage('User rejected connection request', 'error');
+        } else {
+          showMessage(`Error connecting wallet: ${error.message}`, 'error');
+        }
+      }
+    }
+
+    async function initContracts() {
+      try {
+        const config = CONFIG.mainnet;
+        
+        if (!web3) {
+          web3 = new Web3(window.ethereum || window.BinanceChain || config.rpcUrl);
+        }
+        
+        // ✅ SIMPLIFIED AND CORRECT SWAP CONTRACT ABI
+        const swapABI = [
+          // Core Functions
+          {
+            "inputs": [{"internalType": "uint256","name": "vnstAmount","type": "uint256"}],
+            "name": "buyVNST",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+          },
+          {
+            "inputs": [{"internalType": "uint256","name": "vnstAmount","type": "uint256"}],
+            "name": "getQuote",
+            "outputs": [{"internalType": "uint256","name": "usdtRequired","type": "uint256"}],
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "inputs": [],
+            "name": "getPricePerVNST",
+            "outputs": [{"internalType": "uint256","name": "","type": "uint256"}],
+            "stateMutability": "view",
+            "type": "function"
+          },
+          // View Functions
+          {
+            "inputs": [],
+            "name": "minBuy",
+            "outputs": [{"internalType": "uint256","name": "","type": "uint256"}],
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "inputs": [],
+            "name": "vnstPrice",
+            "outputs": [{"internalType": "uint256","name": "","type": "uint256"}],
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "inputs": [],
+            "name": "sellerWallet",
+            "outputs": [{"internalType": "address","name": "","type": "address"}],
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "inputs": [],
+            "name": "vnstToken",
+            "outputs": [{"internalType": "contract IERC20","name": "","type": "address"}],
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "inputs": [],
+            "name": "usdtToken",
+            "outputs": [{"internalType": "contract IERC20","name": "","type": "address"}],
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "inputs": [{"internalType": "address","name": "buyer","type": "address"}],
+            "name": "isApproved",
+            "outputs": [{"internalType": "bool","name": "","type": "bool"}],
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "inputs": [],
+            "name": "totalSold",
+            "outputs": [{"internalType": "uint256","name": "","type": "uint256"}],
+            "stateMutability": "view",
+            "type": "function"
+          }
+        ];
+
+        // ✅ STANDARD ERC20 ABI
+        const tokenABI = [
+          {
+            "constant": true,
+            "inputs": [],
+            "name": "decimals",
+            "outputs": [{"name": "","type": "uint8"}],
+            "type": "function"
+          },
+          {
+            "constant": true,
+            "inputs": [],
+            "name": "symbol",
+            "outputs": [{"name": "","type": "string"}],
+            "type": "function"
+          },
+          {
+            "constant": true,
+            "inputs": [],
+            "name": "name",
+            "outputs": [{"name": "","type": "string"}],
+            "type": "function"
+          },
+          {
+            "constant": true,
+            "inputs": [{"name": "_owner","type": "address"}],
+            "name": "balanceOf",
+            "outputs": [{"name": "balance","type": "uint256"}],
+            "type": "function"
+          },
+          {
+            "constant": false,
+            "inputs": [
+              {"name": "_spender","type": "address"},
+              {"name": "_value","type": "uint256"}
+            ],
+            "name": "approve",
+            "outputs": [{"name": "success","type": "bool"}],
+            "type": "function"
+          },
+          {
+            "constant": true,
+            "inputs": [
+              {"name": "_owner","type": "address"},
+              {"name": "_spender","type": "address"}
+            ],
+            "name": "allowance",
+            "outputs": [{"name": "remaining","type": "uint256"}],
+            "type": "function"
+          },
+          {
+            "constant": false,
+            "inputs": [
+              {"name": "_from","type": "address"},
+              {"name": "_to","type": "address"},
+              {"name": "_value","type": "uint256"}
+            ],
+            "name": "transferFrom",
+            "outputs": [{"name": "success","type": "bool"}],
+            "type": "function"
+          }
+        ];
+
+        // Initialize contracts
+        swapContract = new web3.eth.Contract(swapABI, config.vnstSwapAddress);
+        vnstToken = new web3.eth.Contract(tokenABI, config.vnstTokenAddress);
+        usdtToken = new web3.eth.Contract(tokenABI, config.usdtTokenAddress);
+        
+        // Test contract connection
+        minBuyAmount = await swapContract.methods.minBuy().call();
+        vnstDecimals = await vnstToken.methods.decimals().call();
+        
+        document.getElementById('minBuyAmount').textContent = formatUnits(minBuyAmount, vnstDecimals) + ' VNST';
+        
+        await loadContractData();
+        contractsInitialized = true;
+        
+        showMessage('Contracts initialized successfully', 'success');
+        
+      } catch (error) {
+        console.error('Contract initialization error:', error);
+        showMessage(`Error initializing contracts: ${error.message}`, 'error');
+        contractsInitialized = false;
+      }
+    }
+
+    async function loadContractData() {
+      try {
+        if (!swapContract) return;
+        
+        const price = await swapContract.methods.vnstPrice().call();
+        document.getElementById('vnstPrice').textContent = `${formatUnits(price, 18)} USDT`;
+        
+        const sellerWallet = await swapContract.methods.sellerWallet().call();
+        const availableVNST = await vnstToken.methods.balanceOf(sellerWallet).call();
+        document.getElementById('availableVNST').textContent = `${formatUnits(availableVNST, vnstDecimals)} VNST`;
+        
+        const vnstTokenAddress = await swapContract.methods.vnstToken().call();
+        document.getElementById('vnstContract').textContent = vnstTokenAddress;
+        
+      } catch (error) {
+        console.error('Error loading contract data:', error);
+        showMessage(`Error loading contract data: ${error.message}`, 'error');
+      }
+    }
+
+    async function checkApprovalStatus(vnstAmount) {
+      try {
+        if (!vnstAmount || web3.utils.toBN(vnstAmount).lt(web3.utils.toBN(minBuyAmount))) {
+          return false;
+        }
+        
+        const requiredAllowance = await swapContract.methods.getQuote(vnstAmount).call();
+        const currentAllowance = await usdtToken.methods.allowance(
+          currentAccount, 
+          CONFIG.mainnet.vnstSwapAddress
+        ).call();
+        
+        return web3.utils.toBN(currentAllowance).gte(web3.utils.toBN(requiredAllowance));
+      } catch (error) {
+        console.error('Approval check error:', error);
+        return false;
+      }
+    }
+
+    async function approveUSDT() {
+      try {
+        if (!contractsInitialized) {
+          showMessage('Contracts not initialized. Please reconnect wallet.', 'error');
+          return;
+        }
+
+        const vnstAmountInput = document.getElementById('vnstAmount').value;
+        if (!vnstAmountInput || isNaN(vnstAmountInput)) {
+          showMessage('Please enter a valid VNST amount', 'error');
+          return;
+        }
+        
+        const vnstAmount = toTokenUnits(vnstAmountInput);
+        
+        if (vnstAmount.lt(web3.utils.toBN(minBuyAmount))) {
+          showMessage(`Minimum purchase is ${formatUnits(minBuyAmount, vnstDecimals)} VNST`, 'error');
+          return;
+        }
+        
+        const requiredAllowance = await swapContract.methods.getQuote(vnstAmount.toString()).call();
+        
+        await handleTransaction(
+          usdtToken.methods.approve(
+            CONFIG.mainnet.vnstSwapAddress,
+            requiredAllowance
+          ),
+          'USDT approved successfully!'
+        );
+        
+        document.getElementById('approveBtn').disabled = true;
+        document.getElementById('buyBtn').disabled = false;
+      } catch (error) {
+        console.error('Approval error:', error);
+        if (error.code === 4001) {
+          showMessage('User rejected transaction', 'error');
+        } else {
+          showMessage(`Approval failed: ${parseError(error)}`, 'error');
+        }
+      }
+    }
+
+    async function buyVNST() {
+      try {
+        if (!contractsInitialized) {
+          showMessage('Contracts not initialized. Please reconnect wallet.', 'error');
+          return;
+        }
+
+        const vnstAmountInput = document.getElementById('vnstAmount').value;
+        if (!vnstAmountInput || isNaN(vnstAmountInput)) {
+          showMessage('Please enter a valid VNST amount', 'error');
+          return;
+        }
+        
+        const vnstAmount = toTokenUnits(vnstAmountInput);
+        
+        if (vnstAmount.lt(web3.utils.toBN(minBuyAmount))) {
+          showMessage(`Minimum purchase is ${formatUnits(minBuyAmount, vnstDecimals)} VNST`, 'error');
+          return;
+        }
+        
+        await handleTransaction(
+          swapContract.methods.buyVNST(vnstAmount.toString()),
+          'VNST purchased successfully!'
+        );
+        
+        await loadContractData();
+        updateUI();
+      } catch (error) {
+        console.error('Purchase error:', error);
+        if (error.code === 4001) {
+          showMessage('User rejected transaction', 'error');
+        } else {
+          showMessage(`Purchase failed: ${parseError(error)}`, 'error');
+        }
+      }
+    }
+
+    async function handleTransaction(txMethod, successMessage) {
+      try {
+        showMessage('Processing transaction...', 'status');
+        
+        const gasEstimate = await txMethod.estimateGas({ from: currentAccount });
+        const gasPrice = await web3.eth.getGasPrice();
+        
+        showMessage(`Confirm transaction in your wallet (Fee: ${web3.utils.fromWei((gasPrice * gasEstimate).toString(), 'ether')} BNB)`, 'status');
+        
+        const receipt = await txMethod.send({
+          from: currentAccount,
+          gas: Math.floor(gasEstimate * 1.2), // Add 20% buffer
+          gasPrice: gasPrice
+        });
+        
+        showMessage(successMessage, 'success');
+        return receipt;
+      } catch (error) {
+        console.error('Transaction error:', error);
+        throw error;
+      }
+    }
+
+    function copyContractAddress() {
+      const address = document.getElementById('vnstContract').textContent;
+      navigator.clipboard.writeText(address).then(() => {
+        showMessage('Contract address copied!', 'success');
+      }).catch(err => {
+        showMessage('Failed to copy address', 'error');
+      });
+    }
+
+    function updateUI() {
+      const isConnected = currentAccount !== null;
+      const connectBtn = document.getElementById('connectWalletBtn');
+      
+      if (isConnected) {
+        connectBtn.textContent = 'Connected';
+        connectBtn.disabled = true;
+      } else {
+        connectBtn.textContent = 'Connect Wallet';
+        connectBtn.disabled = false;
+        document.getElementById('walletInfo').classList.add('swap-hidden');
+      }
+      
+      document.getElementById('approveBtn').disabled = !isConnected || !contractsInitialized;
+      document.getElementById('buyBtn').disabled = true;
+    }
+
+    function formatUnits(value, decimals) {
+      if (!value) return "0";
+      const num = parseFloat(value) / 10 ** decimals;
+      return num.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: decimals
+      });
+    }
+
+    function shortenAddress(address) {
+      return address ? `${address.substring(0, 6)}...${address.substring(address.length - 4)}` : '';
+    }
+
+    function showMessage(message, type = 'status') {
+      const statusDiv = document.getElementById('statusMessages');
+      const messageElement = document.createElement('div');
+      messageElement.textContent = message;
+      messageElement.classList.add(`swap-${type}-message`);
+      statusDiv.innerHTML = ''; // Clear previous messages
+      statusDiv.appendChild(messageElement);
+      
+      setTimeout(() => {
+        messageElement.style.opacity = '0';
+        setTimeout(() => {
+          if (messageElement.parentNode) {
+            messageElement.remove();
+          }
+        }, 300);
+      }, 5000);
+    }
+
+    function parseError(error) {
+      if (!error) return 'Unknown error';
+      
+      if (error.message) {
+        if (error.message.includes('insufficient funds')) {
+          return 'Insufficient BNB balance for gas fee';
+        }
+        if (error.message.includes('user rejected')) {
+          return 'User rejected the transaction';
+        }
+        if (error.message.includes('execution reverted')) {
+          // Extract revert reason if available
+          const revertMatch = error.message.match(/reverted with reason string '(.+)'/);
+          return revertMatch ? `Transaction failed: ${revertMatch[1]}` : 'Transaction reverted by contract';
+        }
+        return error.message;
+      }
+      
+      return 'Unknown error occurred';
+    }
+  </script>
+</body>
+</html>
