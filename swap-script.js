@@ -62,6 +62,9 @@ function setupTabSystem() {
 }
 
 async function setupEventListeners() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navMenu = document.getElementById('navMenu');
+    
     document.getElementById('connectWalletBtn').addEventListener('click', connectWallet);
     document.getElementById('approveBuyBtn').addEventListener('click', approveUSDT);
     document.getElementById('buyBtn').addEventListener('click', buyVNT);
