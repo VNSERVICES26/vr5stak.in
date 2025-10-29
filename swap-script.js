@@ -64,6 +64,13 @@ function setupTabSystem() {
 async function setupEventListeners() {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navMenu = document.getElementById('navMenu');
+
+    if (mobileMenuBtn && navMenu) {
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    } else {     
+    const altToggle = document.querySelector('.menu-toggle');
+    if (altToggle && navMenu) altToggle.addEventListener('click', toggleMobileMenu);
+    }
     
     document.getElementById('connectWalletBtn').addEventListener('click', connectWallet);
     document.getElementById('approveBuyBtn').addEventListener('click', approveUSDT);
@@ -71,7 +78,6 @@ async function setupEventListeners() {
     document.getElementById('approveSellBtn').addEventListener('click', approveVNT);
     document.getElementById('sellBtn').addEventListener('click', sellVNT);
     document.getElementById('copyContractBtn').addEventListener('click', copyContractAddress);
-    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
 }
 
 function setupInputListeners() {
