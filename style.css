@@ -1,0 +1,904 @@
+:root {
+  /* Backgrounds */
+  --bg-primary: #050816;
+  --bg-secondary: #0B1120;
+  --bg-glass: rgba(18, 26, 45, 0.65);
+  --bg-card: rgba(18, 26, 45, 0.80);
+  
+  /* Colors - From First File */
+  --gold: #F4C542;
+  --gold-dark: #d4a830;
+  --cyan: #00B8FF;
+  --cyan-dark: #0090d0;
+  --green: #3DFF8A;
+  --green-dark: #2dcc7a;
+  --silver: #D8E3F0;
+  --white: #F8FBFF;
+  --text-secondary: #A9B8CC;
+  --muted: #6B7A8F;
+  
+  /* Border */
+  --border-normal: rgba(0, 184, 255, 0.15);
+  --border-cyan: rgba(0, 184, 255, 0.30);
+  --border-gold: rgba(244, 197, 66, 0.20);
+  --border-green: rgba(61, 255, 138, 0.20);
+  
+  /* Shadows */
+  --shadow-blue: 0 20px 60px rgba(0, 184, 255, 0.12);
+  --shadow-gold: 0 20px 60px rgba(244, 197, 66, 0.10);
+  --shadow-green: 0 20px 60px rgba(61, 255, 138, 0.10);
+  --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.40);
+  
+  /* Radius */
+  --radius-btn: 50px;
+  --radius-card: 20px;
+  --radius-input: 14px;
+  --radius-sm: 10px;
+  
+  /* Transitions */
+  --transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Legacy variables (mapped to new system) */
+  --primary-color: #050816;
+  --secondary-color: #F4C542;
+  --accent-color: #00B8FF;
+  --text-color: #F8FBFF;
+  --card-bg: rgba(18, 26, 45, 0.80);
+  --footer-bg: #050816;
+  --hover-color: #d4a830;
+  --glass-effect: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(0, 184, 255, 0.15);
+  --neon-glow: 0 0 10px rgba(0, 184, 255, 0.7);
+  --button-glow: 0 0 15px rgba(244, 197, 66, 0.7);
+  --success-color: #3DFF8A;
+  --warning-color: #F4C542;
+  --info-color: #00B8FF;
+}
+
+/* ----- RESET & BASE ----- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg-primary);
+  color: var(--white);
+  line-height: 1.7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Particle Background from second file with updated colors */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23F4C542" opacity="0.1"/><circle cx="20" cy="30" r="1.5" fill="%2300B8FF" opacity="0.08"/><circle cx="80" cy="70" r="1" fill="%233DFF8A" opacity="0.06"/></svg>') repeat;
+  background-size: 2%;
+  z-index: -1;
+  animation: particleMove 100s linear infinite;
+}
+
+/* ----- SCROLLBAR ----- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 10px; }
+
+/* ============================================================
+   NAVBAR - Updated with first file styling
+   ============================================================ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background: rgba(5, 8, 22, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 184, 255, 0.06);
+  padding: 14px 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: var(--transition);
+}
+
+.navbar.scrolled {
+  padding: 10px 2rem;
+  background: rgba(5, 8, 22, 0.96);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+  height: 36px;
+  margin-right: 1.5rem;
+  display: block;
+  transition: var(--transition);
+}
+
+.logo:hover {
+  transform: scale(1.03);
+}
+
+#navMenu {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+}
+
+#navMenu li {
+  display: inline-block;
+}
+
+#navMenu a {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--transition);
+  position: relative;
+  padding: 4px 0;
+}
+
+#navMenu a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--cyan);
+  transition: var(--transition);
+}
+
+#navMenu a:hover,
+#navMenu a.active {
+  color: var(--white);
+}
+
+#navMenu a:hover::after,
+#navMenu a.active::after {
+  width: 100%;
+}
+
+#navMenu a.active {
+  color: var(--gold);
+}
+
+#navMenu a.active::after {
+  background: var(--gold);
+}
+
+/* Nav Connect Button */
+.nav-connect-btn {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark)) !important;
+  color: var(--bg-primary) !important;
+  padding: 8px 22px !important;
+  border-radius: var(--radius-btn) !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  border: none !important;
+  transition: var(--transition) !important;
+  cursor: pointer;
+}
+
+.nav-connect-btn:hover {
+  transform: scale(1.05) !important;
+  box-shadow: var(--shadow-gold) !important;
+}
+
+.nav-connect-btn::after {
+  display: none !important;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-size: 2.2rem;
+  margin-left: auto;
+  z-index: 1001;
+  cursor: pointer;
+}
+
+/* Responsive Navbar */
+@media (max-width: 900px) {
+  .navbar {
+    padding: 12px 1rem;
+  }
+  .logo {
+    margin-right: 0;
+  }
+  .mobile-menu-btn {
+    display: block;
+  }
+  #navMenu {
+    display: none;
+    flex-direction: column;
+    background: var(--bg-secondary);
+    position: absolute;
+    top: 64px;
+    right: 16px;
+    width: 200px;
+    gap: 12px;
+    padding: 20px 24px;
+    border-radius: var(--radius-card);
+    border: 1px solid var(--border-normal);
+    box-shadow: var(--shadow-lg);
+  }
+  #navMenu.show {
+    display: flex;
+  }
+  #navMenu li {
+    margin-bottom: 0;
+  }
+  .nav-connect-btn {
+    width: 100%;
+    text-align: center;
+    padding: 10px !important;
+  }
+}
+
+@media (min-width: 901px) {
+  #navMenu {
+    display: flex !important;
+    position: static;
+    background: transparent;
+    flex-direction: row;
+    padding: 0;
+    box-shadow: none;
+    border-radius: 0;
+    width: auto;
+  }
+  .mobile-menu-btn {
+    display: none;
+  }
+}
+
+/* ============================================================
+   CARDS - Updated Glassmorphism
+   ============================================================ */
+.card {
+  background: var(--bg-glass);
+  border-radius: var(--radius-card);
+  padding: 2rem;
+  border: 1px solid var(--border-normal);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--gold), var(--cyan), var(--gold));
+  background-size: 200% 200%;
+  z-index: -1;
+  animation: gradientBorder 6s ease infinite;
+  border-radius: calc(var(--radius-card) + 2px);
+  opacity: 0.7;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg), var(--shadow-blue);
+}
+
+/* ============================================================
+   STAT CARDS
+   ============================================================ */
+.stat-card {
+  text-align: center;
+}
+
+.stat-card .value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin: 1rem 0;
+}
+
+/* ============================================================
+   STAKE PAGE
+   ============================================================ */
+.stake-card {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stake-card h3 {
+  color: var(--cyan);
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--border-normal);
+  padding-bottom: 0.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Form Inputs */
+.form-group input[type="text"],
+.form-group input[type="number"] {
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: var(--radius-input);
+  border: 1px solid var(--border-normal);
+  background: rgba(0, 0, 0, 0.30);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  transition: var(--transition);
+  outline: none;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 4px rgba(0, 184, 255, 0.06);
+}
+
+.form-group input::placeholder {
+  color: var(--muted);
+}
+
+/* Stake Items */
+.stake-summary {
+  background: rgba(0, 0, 0, 0.20);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  border-left: 4px solid var(--gold);
+}
+
+.stake-summary:hover {
+  background: rgba(0, 184, 255, 0.08);
+}
+
+.stake-details {
+  max-height: 0;
+  overflow-y: auto;
+  transition: max-height 0.5s ease;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  padding: 0 1rem;
+}
+
+.stake-details.active {
+  max-height: 500px;
+  padding: 1rem;
+  margin-top: 10px;
+  border: 1px solid var(--border-normal);
+}
+
+.stake-details::-webkit-scrollbar {
+  width: 6px;
+}
+
+.stake-details::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.1);
+  border-radius: 3px;
+}
+
+.stake-details::-webkit-scrollbar-thumb {
+  background: var(--cyan);
+  border-radius: 3px;
+}
+
+.stake-details::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+.stake-item {
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--cyan);
+}
+
+.stake-item p {
+  margin: 8px 0;
+  color: var(--text-secondary);
+}
+
+.stake-item p strong {
+  color: var(--white);
+}
+
+/* Progress Bar */
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  margin-top: 12px;
+  overflow: hidden;
+}
+
+.progress-bar div {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--cyan));
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* ============================================================
+   REWARDS SECTION
+   ============================================================ */
+.rewards-section {
+  margin: 20px 0;
+  padding: 20px 24px;
+  background: var(--bg-glass);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-normal);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.rewards-section::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--gold), var(--cyan), var(--gold));
+  background-size: 200% 200%;
+  z-index: -1;
+  animation: gradientBorder 6s ease infinite;
+  border-radius: calc(var(--radius-card) + 2px);
+  opacity: 0.7;
+}
+
+.rewards-section:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg), var(--shadow-gold);
+}
+
+.rewards-section h3 {
+  color: var(--cyan);
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--border-normal);
+  padding-bottom: 0.5rem;
+  font-size: 1.5rem;
+  text-shadow: 0 0 5px rgba(0, 184, 255, 0.3);
+}
+
+.rewards-card {
+  background: rgba(0, 0, 0, 0.20);
+  padding: 15px;
+  border-radius: var(--radius-sm);
+  margin-top: 10px;
+  border: 1px solid var(--border-normal);
+}
+
+.reward-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-normal);
+  align-items: center;
+}
+
+.reward-item:last-child {
+  border-bottom: none;
+}
+
+.reward-label {
+  font-weight: bold;
+  color: var(--cyan);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reward-label::before {
+  content: '•';
+  color: var(--gold);
+  font-size: 1.5rem;
+}
+
+.reward-value {
+  color: var(--gold);
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-shadow: 0 0 5px rgba(244, 197, 66, 0.3);
+}
+
+#pendingVntRewards, #pendingUsdtRewards {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--gold);
+  margin: 0.5rem 0;
+  text-shadow: 0 0 5px rgba(244, 197, 66, 0.3);
+}
+
+/* ============================================================
+   BUTTONS - Updated with first file styles
+   ============================================================ */
+.btn, .wallet-connect-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  min-width: 180px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: var(--transition);
+  margin: 5px 0;
+}
+
+/* Gold Button */
+.btn, .wallet-connect-btn {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--bg-primary);
+}
+
+.btn:hover, .wallet-connect-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: var(--shadow-gold);
+}
+
+/* Stake Button - Cyan */
+#stakeBtn {
+  background: linear-gradient(135deg, var(--cyan), var(--cyan-dark));
+  color: var(--white);
+}
+
+#stakeBtn:hover {
+  box-shadow: var(--shadow-blue);
+}
+
+/* Claim Button - Green */
+#claimTokenBtn, #claimRewardsBtn {
+  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  color: var(--bg-primary);
+}
+
+#claimTokenBtn:hover, #claimRewardsBtn:hover {
+  box-shadow: var(--shadow-green);
+}
+
+/* Approve Button - Gold */
+#approveMaxBtn {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--bg-primary);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #6c757d, #5a6268) !important;
+  color: var(--white) !important;
+}
+
+#claimRewardsBtn {
+  width: 100%;
+  margin-top: 15px;
+}
+
+#claimRewardsBtn:hover {
+  transform: translateY(-3px);
+}
+
+#claimRewardsBtn:disabled {
+  background: #7f8c8d;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ============================================================
+   TEAM PAGE
+   ============================================================ */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.team-stat {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.20);
+  border-radius: var(--radius-sm);
+}
+
+.team-stat .label {
+  color: var(--cyan);
+  font-size: 0.9rem;
+}
+
+.team-stat .value {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--gold);
+}
+
+.team-card {
+  position: relative;
+  overflow: visible;
+}
+
+.level-details-toggle {
+  color: var(--cyan);
+  cursor: pointer;
+  font-size: 0.8rem;
+  text-align: right;
+  margin-top: 0.5rem;
+  transition: var(--transition);
+}
+
+.level-details-toggle:hover {
+  color: var(--gold);
+  text-decoration: underline;
+}
+
+.level-members-list {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background: rgba(0, 0, 0, 0.20);
+  border-radius: var(--radius-sm);
+  margin-top: 0.5rem;
+}
+
+.level-members-list.active {
+  max-height: 500px;
+  padding: 0.8rem;
+  border: 1px solid var(--border-normal);
+}
+
+.member-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed rgba(255,255,255,0.1);
+}
+
+.member-item:last-child {
+  border-bottom: none;
+}
+
+/* Status Styles */
+.status-unlocked {
+  color: var(--green);
+  font-weight: bold;
+  background: rgba(61, 255, 138, 0.1);
+  padding: 2px 8px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.status-locked {
+  color: #ff6b6b;
+  font-weight: bold;
+  background: rgba(255, 70, 70, 0.1);
+  padding: 2px 8px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+/* ============================================================
+   ANIMATIONS - From first file
+   ============================================================ */
+@keyframes particleMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 100% 100%; }
+}
+
+@keyframes gradientBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+.text-muted {
+  color: var(--muted) !important;
+  font-size: 0.9rem;
+}
+
+.mt-2 { margin-top: 0.5rem !important; }
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+
+.mb-8 { margin-bottom: 8px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+
+.hidden { display: none !important; }
+.text-center { text-align: center; }
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+}
+
+.modal-content {
+  background: var(--bg-secondary);
+  margin: 10% auto;
+  padding: 30px;
+  width: 80%;
+  max-width: 500px;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-normal);
+  position: relative;
+  color: var(--white);
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+
+.close-modal:hover {
+  color: var(--gold);
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  .stats-container, .cards-container, .team-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .card {
+    padding: 1.5rem;
+  }
+  
+  .stake-item {
+    padding: 12px;
+  }
+  
+  .reward-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 10px 0;
+  }
+  
+  .reward-value {
+    align-self: flex-end;
+  }
+  
+  .rewards-section {
+    padding: 15px;
+  }
+  
+  .navbar {
+    padding: 12px 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+  }
+  
+  .btn, .wallet-connect-btn {
+    padding: 10px 20px;
+    font-size: 0.8rem;
+    min-width: 140px;
+  }
+  
+  .stat-card .value {
+    font-size: 1.8rem;
+  }
+  
+  .rewards-section h3 {
+    font-size: 1.2rem;
+  }
+}
