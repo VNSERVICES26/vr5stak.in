@@ -78,7 +78,7 @@ body {
   position: relative;
 }
 
-/* Particle Background from second file with updated colors */
+/* Simple background without animation */
 body::before {
   content: '';
   position: fixed;
@@ -89,7 +89,6 @@ body::before {
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23F4C542" opacity="0.1"/><circle cx="20" cy="30" r="1.5" fill="%2300B8FF" opacity="0.08"/><circle cx="80" cy="70" r="1" fill="%233DFF8A" opacity="0.06"/></svg>') repeat;
   background-size: 2%;
   z-index: -1;
-  animation: particleMove 100s linear infinite;
 }
 
 /* ----- SCROLLBAR ----- */
@@ -289,21 +288,7 @@ body::before {
   margin-bottom: 2rem;
 }
 
-.card::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, var(--gold), var(--cyan), var(--gold));
-  background-size: 200% 200%;
-  z-index: -1;
-  animation: gradientBorder 6s ease infinite;
-  border-radius: calc(var(--radius-card) + 2px);
-  opacity: 0.7;
-}
-
+/* Removed gradient border animation */
 .card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-lg), var(--shadow-blue);
@@ -454,7 +439,7 @@ body::before {
 }
 
 /* ============================================================
-   REWARDS SECTION
+   REWARDS SECTION - Removed gradient border animation
    ============================================================ */
 .rewards-section {
   margin: 20px 0;
@@ -468,21 +453,6 @@ body::before {
   position: relative;
   overflow: hidden;
   transition: var(--transition);
-}
-
-.rewards-section::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, var(--gold), var(--cyan), var(--gold));
-  background-size: 200% 200%;
-  z-index: -1;
-  animation: gradientBorder 6s ease infinite;
-  border-radius: calc(var(--radius-card) + 2px);
-  opacity: 0.7;
 }
 
 .rewards-section:hover {
@@ -722,56 +692,6 @@ body::before {
   padding: 2px 8px;
   border-radius: 10px;
   display: inline-block;
-}
-
-/* ============================================================
-   ANIMATIONS - From first file
-   ============================================================ */
-@keyframes particleMove {
-  0% { background-position: 0 0; }
-  100% { background-position: 100% 100%; }
-}
-
-@keyframes gradientBorder {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-.pulse {
-  animation: pulse 2s infinite;
 }
 
 /* ============================================================
