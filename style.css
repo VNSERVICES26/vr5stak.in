@@ -23,6 +23,7 @@
   --diamond-shine: rgba(255, 255, 255, 0.3);
   --diamond-sparkle: rgba(255, 255, 255, 0.6);
   
+  /* Border */
   --border-normal: rgba(0, 184, 255, 0.15);
   --border-cyan: rgba(0, 184, 255, 0.30);
   --border-gold: rgba(244, 197, 66, 0.20);
