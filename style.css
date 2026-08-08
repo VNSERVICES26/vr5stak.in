@@ -1,1679 +1,1369 @@
-/* ============================================================
-   VNS / VNST PREMIUM DIAMOND GLASS UPGRADE
-   ------------------------------------------------------------
-   ORIGINAL COLOR PALETTE PRESERVED
-   Gold  : #F4C542
-   Cyan  : #00B8FF
-   Green : #3DFF8A
-   White : #F8FBFF
-   Dark  : #050816 / #0B1120
-   ============================================================ */
-
-
-/* ============================================================
-   1. PREMIUM GLASS VARIABLES
-   ============================================================ */
-
 :root {
-
-  /* ORIGINAL COLORS — DO NOT CHANGE */
-
+  /* Backgrounds */
   --bg-primary: #050816;
   --bg-secondary: #0B1120;
-
+  --bg-glass: rgba(18, 26, 45, 0.65);
+  --bg-card: rgba(18, 26, 45, 0.80);
+  
+  /* Colors - From First File */
   --gold: #F4C542;
   --gold-dark: #d4a830;
-
   --cyan: #00B8FF;
   --cyan-dark: #0090d0;
-
   --green: #3DFF8A;
   --green-dark: #2dcc7a;
-
   --silver: #D8E3F0;
   --white: #F8FBFF;
-
   --text-secondary: #A9B8CC;
   --muted: #6B7A8F;
-
-  /* Original borders */
-
+  
+  /* Border */
   --border-normal: rgba(0, 184, 255, 0.15);
   --border-cyan: rgba(0, 184, 255, 0.30);
   --border-gold: rgba(244, 197, 66, 0.20);
   --border-green: rgba(61, 255, 138, 0.20);
+  
+  /* Shadows */
+  --shadow-blue: 0 20px 60px rgba(0, 184, 255, 0.12);
+  --shadow-gold: 0 20px 60px rgba(244, 197, 66, 0.10);
+  --shadow-green: 0 20px 60px rgba(61, 255, 138, 0.10);
+  --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.40);
+  
+  /* Radius */
+  --radius-btn: 50px;
+  --radius-card: 20px;
+  --radius-input: 14px;
+  --radius-sm: 10px;
+  
+  /* Transitions */
+  --transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-
-  /* PREMIUM GLASS */
-
-  --premium-glass:
-    linear-gradient(
-      135deg,
-      rgba(18, 26, 45, 0.78),
-      rgba(18, 26, 45, 0.48)
-    );
-
-  --premium-glass-dark:
-    linear-gradient(
-      135deg,
-      rgba(5, 8, 22, 0.82),
-      rgba(11, 17, 32, 0.58)
-    );
-
-  --glass-highlight:
-    rgba(255,255,255,0.075);
-
-  --glass-highlight-strong:
-    rgba(255,255,255,0.14);
-
-
-  /* ORIGINAL COLOR GLOWS */
-
-  --gold-glow:
-    0 0 12px rgba(244,197,66,0.35),
-    0 0 30px rgba(244,197,66,0.12);
-
-  --cyan-glow:
-    0 0 12px rgba(0,184,255,0.35),
-    0 0 30px rgba(0,184,255,0.12);
-
-  --green-glow:
-    0 0 12px rgba(61,255,138,0.35),
-    0 0 30px rgba(61,255,138,0.12);
-
-
-  /* PREMIUM SHADOW */
-
-  --diamond-shadow:
-    0 25px 80px rgba(0,0,0,0.48),
-    inset 0 1px 0 rgba(255,255,255,0.08);
-
+  /* Legacy variables (mapped to new system) */
+  --primary-color: #050816;
+  --secondary-color: #F4C542;
+  --accent-color: #00B8FF;
+  --text-color: #F8FBFF;
+  --card-bg: rgba(18, 26, 45, 0.80);
+  --footer-bg: #050816;
+  --hover-color: #d4a830;
+  --glass-effect: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(0, 184, 255, 0.15);
+  --neon-glow: 0 0 10px rgba(0, 184, 255, 0.7);
+  --button-glow: 0 0 15px rgba(244, 197, 66, 0.7);
+  --success-color: #3DFF8A;
+  --warning-color: #F4C542;
+  --info-color: #00B8FF;
 }
 
+/* ----- RESET & BASE ----- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-/* ============================================================
-   2. BODY — ORIGINAL COLORS + PREMIUM DEPTH
-   ============================================================ */
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   background: var(--bg-primary);
-
   color: var(--white);
-
+  line-height: 1.7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
 }
-
-
-/* Extra glass atmosphere */
-
-body::before {
-
-  background:
-    linear-gradient(
-      -45deg,
-      #0a0a2e,
-      #1a0533,
-      #0a1a3a,
-      #1a0a2e,
-      #0a2a3a,
-      #2a0a3a
-    );
-
-  background-size: 400% 400%;
-
-}
-
-
-/* Preserve original gold / cyan / green atmosphere */
-
-body::after {
-
-  background:
-
-    radial-gradient(
-      ellipse at 20% 50%,
-      rgba(244,197,66,0.15) 0%,
-      transparent 50%
-    ),
-
-    radial-gradient(
-      ellipse at 80% 20%,
-      rgba(0,184,255,0.12) 0%,
-      transparent 50%
-    ),
-
-    radial-gradient(
-      ellipse at 50% 80%,
-      rgba(61,255,138,0.08) 0%,
-      transparent 50%
-    ),
-
-    radial-gradient(
-      ellipse at 10% 80%,
-      rgba(244,197,66,0.08) 0%,
-      transparent 40%
-    ),
-
-    radial-gradient(
-      ellipse at 90% 70%,
-      rgba(0,184,255,0.10) 0%,
-      transparent 45%
-    );
-
-}
-
 
 /* ============================================================
-   3. DIAMOND LIGHT PARTICLES
+   BACKGROUND ANIMATION - Bright & Vibrant
    ============================================================ */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-45deg, 
+    #0a0a2e,
+    #1a0533,
+    #0a1a3a,
+    #1a0a2e,
+    #0a2a3a,
+    #2a0a3a
+  );
+  background-size: 400% 400%;
+  z-index: -2;
+  animation: gradientBG 12s ease infinite;
+}
+
+/* Glowing Orbs Background */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: 
+    radial-gradient(ellipse at 20% 50%, rgba(244, 197, 66, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(0, 184, 255, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(61, 255, 138, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 10% 80%, rgba(244, 197, 66, 0.08) 0%, transparent 40%),
+    radial-gradient(ellipse at 90% 70%, rgba(0, 184, 255, 0.10) 0%, transparent 45%);
+  animation: orbFloat 20s ease-in-out infinite;
+}
+
+/* Floating Particles - Brighter */
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
 
 .particle {
-
-  filter:
-    drop-shadow(0 0 5px currentColor)
-    drop-shadow(0 0 12px currentColor);
-
-  animation:
-    diamondParticle var(--duration)
-    ease-in-out infinite;
-
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: floatParticle var(--duration) ease-in-out infinite;
 }
 
-
-@keyframes diamondParticle {
-
-  0% {
-
-    transform:
-      translateY(0)
-      translateX(0)
-      scale(1);
-
-    opacity: 0.25;
-
-  }
-
-  30% {
-
-    transform:
-      translateY(-25px)
-      translateX(10px)
-      scale(1.25);
-
-    opacity: 0.8;
-
-  }
-
-  50% {
-
-    transform:
-      translateY(-10px)
-      translateX(-10px)
-      scale(1.45);
-
-    opacity: 1;
-
-  }
-
-  75% {
-
-    transform:
-      translateY(-35px)
-      translateX(15px)
-      scale(1.1);
-
-    opacity: 0.7;
-
-  }
-
-  100% {
-
-    transform:
-      translateY(0)
-      translateX(0)
-      scale(1);
-
-    opacity: 0.25;
-
-  }
-
+.particle:nth-child(1) {
+  width: 4px;
+  height: 4px;
+  background: var(--gold);
+  left: 10%;
+  top: 20%;
+  --duration: 15s;
+  animation-delay: 0s;
+  box-shadow: 0 0 10px rgba(244, 197, 66, 0.5);
 }
 
+.particle:nth-child(2) {
+  width: 6px;
+  height: 6px;
+  background: var(--cyan);
+  left: 25%;
+  top: 60%;
+  --duration: 18s;
+  animation-delay: 2s;
+  box-shadow: 0 0 15px rgba(0, 184, 255, 0.5);
+}
+
+.particle:nth-child(3) {
+  width: 3px;
+  height: 3px;
+  background: var(--green);
+  left: 40%;
+  top: 30%;
+  --duration: 14s;
+  animation-delay: 4s;
+  box-shadow: 0 0 10px rgba(61, 255, 138, 0.5);
+}
+
+.particle:nth-child(4) {
+  width: 5px;
+  height: 5px;
+  background: var(--gold);
+  left: 55%;
+  top: 75%;
+  --duration: 20s;
+  animation-delay: 1s;
+  box-shadow: 0 0 12px rgba(244, 197, 66, 0.4);
+}
+
+.particle:nth-child(5) {
+  width: 4px;
+  height: 4px;
+  background: var(--cyan);
+  left: 70%;
+  top: 15%;
+  --duration: 16s;
+  animation-delay: 3s;
+  box-shadow: 0 0 10px rgba(0, 184, 255, 0.5);
+}
+
+.particle:nth-child(6) {
+  width: 7px;
+  height: 7px;
+  background: var(--gold);
+  left: 85%;
+  top: 50%;
+  --duration: 22s;
+  animation-delay: 5s;
+  box-shadow: 0 0 20px rgba(244, 197, 66, 0.4);
+}
+
+.particle:nth-child(7) {
+  width: 3px;
+  height: 3px;
+  background: var(--green);
+  left: 15%;
+  top: 85%;
+  --duration: 13s;
+  animation-delay: 6s;
+  box-shadow: 0 0 8px rgba(61, 255, 138, 0.5);
+}
+
+.particle:nth-child(8) {
+  width: 5px;
+  height: 5px;
+  background: var(--cyan);
+  left: 45%;
+  top: 10%;
+  --duration: 19s;
+  animation-delay: 2.5s;
+  box-shadow: 0 0 12px rgba(0, 184, 255, 0.5);
+}
+
+.particle:nth-child(9) {
+  width: 4px;
+  height: 4px;
+  background: var(--gold);
+  left: 65%;
+  top: 40%;
+  --duration: 17s;
+  animation-delay: 4.5s;
+  box-shadow: 0 0 10px rgba(244, 197, 66, 0.4);
+}
+
+.particle:nth-child(10) {
+  width: 6px;
+  height: 6px;
+  background: var(--green);
+  left: 35%;
+  top: 55%;
+  --duration: 21s;
+  animation-delay: 1.5s;
+  box-shadow: 0 0 15px rgba(61, 255, 138, 0.4);
+}
+
+.particle:nth-child(11) {
+  width: 3px;
+  height: 3px;
+  background: var(--cyan);
+  left: 75%;
+  top: 85%;
+  --duration: 14s;
+  animation-delay: 3.5s;
+  box-shadow: 0 0 8px rgba(0, 184, 255, 0.5);
+}
+
+.particle:nth-child(12) {
+  width: 5px;
+  height: 5px;
+  background: var(--gold);
+  left: 5%;
+  top: 45%;
+  --duration: 16s;
+  animation-delay: 5.5s;
+  box-shadow: 0 0 12px rgba(244, 197, 66, 0.4);
+}
 
 /* ============================================================
-   4. DIAMOND GLASS CARD
+   ANIMATIONS
+   ============================================================ */
+@keyframes gradientBG {
+  0% { 
+    background-position: 0% 50%;
+    filter: brightness(1);
+  }
+  25% { 
+    background-position: 100% 0%;
+    filter: brightness(1.2);
+  }
+  50% { 
+    background-position: 100% 100%;
+    filter: brightness(1);
+  }
+  75% { 
+    background-position: 0% 100%;
+    filter: brightness(1.1);
+  }
+  100% { 
+    background-position: 0% 50%;
+    filter: brightness(1);
+  }
+}
+
+@keyframes orbFloat {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.8;
+  }
+  25% {
+    transform: scale(1.1) rotate(5deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1) rotate(-3deg);
+    opacity: 0.9;
+  }
+  75% {
+    transform: scale(1.05) rotate(3deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.8;
+  }
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.4;
+  }
+  25% {
+    transform: translateY(-30px) translateX(10px) scale(1.2);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-10px) translateX(-10px) scale(1);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(-40px) translateX(15px) scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.4;
+  }
+}
+
+/* Glow Line Animation */
+.glow-line {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.glow-line::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(244, 197, 66, 0.3), 
+    rgba(0, 184, 255, 0.3), 
+    rgba(61, 255, 138, 0.3),
+    transparent
+  );
+  top: 20%;
+  left: -50%;
+  animation: slideLine 8s linear infinite;
+  filter: blur(2px);
+}
+
+.glow-line::after {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(0, 184, 255, 0.2), 
+    rgba(244, 197, 66, 0.2), 
+    rgba(61, 255, 138, 0.2),
+    transparent
+  );
+  bottom: 30%;
+  left: -50%;
+  animation: slideLine 12s linear infinite reverse;
+  filter: blur(2px);
+}
+
+@keyframes slideLine {
+  0% {
+    transform: translateX(0%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(50%);
+    opacity: 0;
+  }
+}
+
+/* ----- SCROLLBAR ----- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 10px; }
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background: rgba(5, 8, 22, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 184, 255, 0.06);
+  padding: 14px 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: var(--transition);
+}
+
+.navbar.scrolled {
+  padding: 10px 2rem;
+  background: rgba(5, 8, 22, 0.96);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+  height: 36px;
+  margin-right: 1.5rem;
+  display: block;
+  transition: var(--transition);
+}
+
+.logo:hover {
+  transform: scale(1.03);
+}
+
+#navMenu {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+}
+
+#navMenu li {
+  display: inline-block;
+}
+
+#navMenu a {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--transition);
+  position: relative;
+  padding: 4px 0;
+}
+
+#navMenu a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--cyan);
+  transition: var(--transition);
+}
+
+#navMenu a:hover,
+#navMenu a.active {
+  color: var(--white);
+}
+
+#navMenu a:hover::after,
+#navMenu a.active::after {
+  width: 100%;
+}
+
+#navMenu a.active {
+  color: var(--gold);
+}
+
+#navMenu a.active::after {
+  background: var(--gold);
+}
+
+/* Nav Connect Button */
+.nav-connect-btn {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark)) !important;
+  color: var(--bg-primary) !important;
+  padding: 8px 22px !important;
+  border-radius: var(--radius-btn) !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  border: none !important;
+  transition: var(--transition) !important;
+  cursor: pointer;
+}
+
+.nav-connect-btn:hover {
+  transform: scale(1.05) !important;
+  box-shadow: var(--shadow-gold) !important;
+}
+
+.nav-connect-btn::after {
+  display: none !important;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-size: 2.2rem;
+  margin-left: auto;
+  z-index: 1001;
+  cursor: pointer;
+}
+
+/* Responsive Navbar */
+@media (max-width: 900px) {
+  .navbar {
+    padding: 12px 1rem;
+  }
+  .logo {
+    margin-right: 0;
+  }
+  .mobile-menu-btn {
+    display: block;
+  }
+  #navMenu {
+    display: none;
+    flex-direction: column;
+    background: var(--bg-secondary);
+    position: absolute;
+    top: 64px;
+    right: 16px;
+    width: 200px;
+    gap: 12px;
+    padding: 20px 24px;
+    border-radius: var(--radius-card);
+    border: 1px solid var(--border-normal);
+    box-shadow: var(--shadow-lg);
+  }
+  #navMenu.show {
+    display: flex;
+  }
+  #navMenu li {
+    margin-bottom: 0;
+  }
+  .nav-connect-btn {
+    width: 100%;
+    text-align: center;
+    padding: 10px !important;
+  }
+}
+
+@media (min-width: 901px) {
+  #navMenu {
+    display: flex !important;
+    position: static;
+    background: transparent;
+    flex-direction: row;
+    padding: 0;
+    box-shadow: none;
+    border-radius: 0;
+    width: auto;
+  }
+  .mobile-menu-btn {
+    display: none;
+  }
+}
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.card {
+  background: var(--bg-glass);
+  border-radius: var(--radius-card);
+  padding: 2rem;
+  border: 1px solid var(--border-normal);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg), var(--shadow-blue);
+}
+
+/* ============================================================
+   STAT CARDS
+   ============================================================ */
+.stat-card {
+  text-align: center;
+}
+
+.stat-card .value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin: 1rem 0;
+}
+
+/* ============================================================
+   STAKE PAGE
+   ============================================================ */
+.stake-card {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stake-card h3 {
+  color: var(--cyan);
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--border-normal);
+  padding-bottom: 0.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Form Inputs */
+.form-group input[type="text"],
+.form-group input[type="number"] {
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: var(--radius-input);
+  border: 1px solid var(--border-normal);
+  background: rgba(0, 0, 0, 0.30);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  transition: var(--transition);
+  outline: none;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 4px rgba(0, 184, 255, 0.06);
+}
+
+.form-group input::placeholder {
+  color: var(--muted);
+}
+
+/* Stake Items */
+.stake-summary {
+  background: rgba(0, 0, 0, 0.20);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  border-left: 4px solid var(--gold);
+}
+
+.stake-summary:hover {
+  background: rgba(0, 184, 255, 0.08);
+}
+
+.stake-details {
+  max-height: 0;
+  overflow-y: auto;
+  transition: max-height 0.5s ease;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  padding: 0 1rem;
+}
+
+.stake-details.active {
+  max-height: 500px;
+  padding: 1rem;
+  margin-top: 10px;
+  border: 1px solid var(--border-normal);
+}
+
+.stake-details::-webkit-scrollbar {
+  width: 6px;
+}
+
+.stake-details::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.1);
+  border-radius: 3px;
+}
+
+.stake-details::-webkit-scrollbar-thumb {
+  background: var(--cyan);
+  border-radius: 3px;
+}
+
+.stake-details::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+.stake-item {
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--cyan);
+}
+
+.stake-item p {
+  margin: 8px 0;
+  color: var(--text-secondary);
+}
+
+.stake-item p strong {
+  color: var(--white);
+}
+
+/* Progress Bar */
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  margin-top: 12px;
+  overflow: hidden;
+}
+
+.progress-bar div {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--cyan));
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* ============================================================
+   REWARDS SECTION
+   ============================================================ */
+.rewards-section {
+  margin: 20px 0;
+  padding: 20px 24px;
+  background: var(--bg-glass);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-normal);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.rewards-section:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg), var(--shadow-gold);
+}
+
+.rewards-section h3 {
+  color: var(--cyan);
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--border-normal);
+  padding-bottom: 0.5rem;
+  font-size: 1.5rem;
+  text-shadow: 0 0 5px rgba(0, 184, 255, 0.3);
+}
+
+.rewards-card {
+  background: rgba(0, 0, 0, 0.20);
+  padding: 15px;
+  border-radius: var(--radius-sm);
+  margin-top: 10px;
+  border: 1px solid var(--border-normal);
+}
+
+.reward-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-normal);
+  align-items: center;
+}
+
+.reward-item:last-child {
+  border-bottom: none;
+}
+
+.reward-label {
+  font-weight: bold;
+  color: var(--cyan);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reward-label::before {
+  content: '•';
+  color: var(--gold);
+  font-size: 1.5rem;
+}
+
+.reward-value {
+  color: var(--gold);
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-shadow: 0 0 5px rgba(244, 197, 66, 0.3);
+}
+
+#pendingVntRewards, #pendingUsdtRewards {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--gold);
+  margin: 0.5rem 0;
+  text-shadow: 0 0 5px rgba(244, 197, 66, 0.3);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn, .wallet-connect-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  min-width: 180px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: var(--transition);
+  margin: 5px 0;
+}
+
+/* Gold Button */
+.btn, .wallet-connect-btn {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--bg-primary);
+}
+
+.btn:hover, .wallet-connect-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: var(--shadow-gold);
+}
+
+/* Stake Button - Cyan */
+#stakeBtn {
+  background: linear-gradient(135deg, var(--cyan), var(--cyan-dark));
+  color: var(--white);
+}
+
+#stakeBtn:hover {
+  box-shadow: var(--shadow-blue);
+}
+
+/* Claim Button - Green */
+#claimTokenBtn, #claimRewardsBtn {
+  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  color: var(--bg-primary);
+}
+
+#claimTokenBtn:hover, #claimRewardsBtn:hover {
+  box-shadow: var(--shadow-green);
+}
+
+/* Approve Button - Gold */
+#approveMaxBtn {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--bg-primary);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #6c757d, #5a6268) !important;
+  color: var(--white) !important;
+}
+
+#claimRewardsBtn {
+  width: 100%;
+  margin-top: 15px;
+}
+
+#claimRewardsBtn:hover {
+  transform: translateY(-3px);
+}
+
+#claimRewardsBtn:disabled {
+  background: #7f8c8d;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ============================================================
+   TEAM PAGE
+   ============================================================ */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.team-stat {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.20);
+  border-radius: var(--radius-sm);
+}
+
+.team-stat .label {
+  color: var(--cyan);
+  font-size: 0.9rem;
+}
+
+.team-stat .value {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--gold);
+}
+
+.team-card {
+  position: relative;
+  overflow: visible;
+}
+
+.level-details-toggle {
+  color: var(--cyan);
+  cursor: pointer;
+  font-size: 0.8rem;
+  text-align: right;
+  margin-top: 0.5rem;
+  transition: var(--transition);
+}
+
+.level-details-toggle:hover {
+  color: var(--gold);
+  text-decoration: underline;
+}
+
+.level-members-list {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background: rgba(0, 0, 0, 0.20);
+  border-radius: var(--radius-sm);
+  margin-top: 0.5rem;
+}
+
+.level-members-list.active {
+  max-height: 500px;
+  padding: 0.8rem;
+  border: 1px solid var(--border-normal);
+}
+
+.member-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed rgba(255,255,255,0.1);
+}
+
+.member-item:last-child {
+  border-bottom: none;
+}
+
+/* Status Styles */
+.status-unlocked {
+  color: var(--green);
+  font-weight: bold;
+  background: rgba(61, 255, 138, 0.1);
+  padding: 2px 8px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.status-locked {
+  color: #ff6b6b;
+  font-weight: bold;
+  background: rgba(255, 70, 70, 0.1);
+  padding: 2px 8px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+.text-muted {
+  color: var(--muted) !important;
+  font-size: 0.9rem;
+}
+
+.mt-2 { margin-top: 0.5rem !important; }
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+
+.mb-8 { margin-bottom: 8px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+
+.hidden { display: none !important; }
+.text-center { text-align: center; }
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+}
+
+.modal-content {
+  background: var(--bg-secondary);
+  margin: 10% auto;
+  padding: 30px;
+  width: 80%;
+  max-width: 500px;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-normal);
+  position: relative;
+  color: var(--white);
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+
+.close-modal:hover {
+  color: var(--gold);
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  .stats-container, .cards-container, .team-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .card {
+    padding: 1.5rem;
+  }
+  
+  .stake-item {
+    padding: 12px;
+  }
+  
+  .reward-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 10px 0;
+  }
+  
+  .reward-value {
+    align-self: flex-end;
+  }
+  
+  .rewards-section {
+    padding: 15px;
+  }
+  
+  .navbar {
+    padding: 12px 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+  }
+  
+  .btn, .wallet-connect-btn {
+    padding: 10px 20px;
+    font-size: 0.8rem;
+    min-width: 140px;
+  }
+  
+  .stat-card .value {
+    font-size: 1.8rem;
+  }
+  
+  .rewards-section h3 {
+    font-size: 1.2rem;
+  }
+}
+
+/* Add this HTML in your body for particles */
+/* ============================================================
+   VNS PREMIUM GLASS + DIAMOND SHINE
+   ADDITIVE VISUAL UPGRADE ONLY
+   Original CSS above is intentionally preserved.
    ============================================================ */
 
 .card,
 .stake-card,
 .team-card,
-.rewards-section {
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(18,26,45,0.78),
-      rgba(18,26,45,0.52)
-    );
-
-  border:
-    1px solid rgba(0,184,255,0.15);
-
-  backdrop-filter:
-    blur(22px)
-    saturate(135%);
-
-  -webkit-backdrop-filter:
-    blur(22px)
-    saturate(135%);
-
-  box-shadow:
-    var(--diamond-shadow);
-
-  position: relative;
-
-  overflow: hidden;
-
+.rewards-section,
+.rewards-card,
+.stake-summary,
+.stake-item,
+.team-stat,
+.level-members-list {
+  background-image: linear-gradient(135deg, rgba(255,255,255,0.055), rgba(255,255,255,0.012) 45%, rgba(0,184,255,0.025));
+  background-blend-mode: screen;
+  border-color: rgba(0,184,255,0.20);
+  box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,0.075), inset 0 -1px 0 rgba(0,184,255,0.035);
 }
-
-
-/* ============================================================
-   5. GLASS TOP REFLECTION
-   ============================================================ */
 
 .card::before,
 .stake-card::before,
 .team-card::before,
 .rewards-section::before {
-
-  content: "";
-
+  content: '';
   position: absolute;
-
   top: 0;
-  left: 4%;
-
-  width: 92%;
+  left: 5%;
+  width: 90%;
   height: 1px;
-
-  background:
-
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,0.45),
-      rgba(244,197,66,0.35),
-      rgba(0,184,255,0.30),
-      transparent
-    );
-
-  opacity: 0.7;
-
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.30), rgba(244,197,66,0.28), rgba(0,184,255,0.30), transparent);
+  opacity: 0.75;
   pointer-events: none;
-
+  z-index: 3;
 }
-
-
-/* ============================================================
-   6. MOVING DIAMOND SHINE
-   ============================================================ */
 
 .card::after,
 .stake-card::after,
 .team-card::after,
 .rewards-section::after {
-
-  content: "";
-
+  content: '';
   position: absolute;
-
-  top: -120%;
-  left: -80%;
-
-  width: 45%;
-  height: 340%;
-
-  background:
-
-    linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(255,255,255,0.02) 25%,
-      rgba(255,255,255,0.20) 45%,
-      rgba(255,255,255,0.42) 50%,
-      rgba(255,255,255,0.16) 55%,
-      rgba(255,255,255,0.02) 75%,
-      transparent 100%
-    );
-
+  top: -130%;
+  left: -75%;
+  width: 34%;
+  height: 360%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.025) 28%, rgba(255,255,255,0.16) 44%, rgba(255,255,255,0.42) 50%, rgba(255,255,255,0.12) 56%, rgba(255,255,255,0.018) 72%, transparent 100%);
   transform: rotate(25deg);
-
   pointer-events: none;
-
-  animation:
-    diamondSweep 7s
-    ease-in-out infinite;
-
-  z-index: 5;
-
+  z-index: 4;
+  animation: vnsDiamondSweep 8s ease-in-out infinite;
 }
 
-
-@keyframes diamondSweep {
-
-  0% {
-
-    left: -80%;
-
-    opacity: 0;
-
-  }
-
-  20% {
-
-    opacity: 0;
-
-  }
-
-  40% {
-
-    opacity: 0.7;
-
-  }
-
-  55% {
-
-    opacity: 0.9;
-
-  }
-
-  70% {
-
-    opacity: 0;
-
-  }
-
-  100% {
-
-    left: 150%;
-
-    opacity: 0;
-
-  }
-
+@keyframes vnsDiamondSweep {
+  0% { left: -75%; opacity: 0; }
+  18% { opacity: 0; }
+  38% { opacity: 0.75; }
+  55% { opacity: 0.85; }
+  70% { opacity: 0; }
+  100% { left: 145%; opacity: 0; }
 }
-
-
-/* ============================================================
-   7. CARD HOVER — CRYSTAL EFFECT
-   ============================================================ */
 
 .card:hover,
 .stake-card:hover,
 .team-card:hover,
 .rewards-section:hover {
-
-  transform: translateY(-6px);
-
-  border-color:
-    rgba(0,184,255,0.30);
-
-  box-shadow:
-
-    0 30px 80px rgba(0,0,0,0.50),
-
-    0 0 25px rgba(0,184,255,0.10),
-
-    inset 0 1px 0
-    rgba(255,255,255,0.12);
-
+  border-color: rgba(0,184,255,0.27);
+  box-shadow: var(--shadow-lg), var(--shadow-blue), inset 0 1px 0 rgba(255,255,255,0.10);
 }
 
-
-/* ============================================================
-   8. STAT CARD — GOLD DIAMOND GLOW
-   ============================================================ */
-
-.stat-card {
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(18,26,45,0.82),
-      rgba(18,26,45,0.55)
-    );
-
-  border:
-    1px solid rgba(244,197,66,0.20);
-
-  backdrop-filter:
-    blur(20px);
-
-  -webkit-backdrop-filter:
-    blur(20px);
-
-  box-shadow:
-    var(--shadow-lg),
-    0 0 20px rgba(244,197,66,0.05);
-
+.stake-summary {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.055), inset 0 -1px 0 rgba(0,184,255,0.025);
 }
 
-
-.stat-card .value {
-
-  color: var(--gold);
-
-  text-shadow:
-
-    0 0 8px rgba(244,197,66,0.35),
-
-    0 0 25px rgba(244,197,66,0.15);
-
+.stake-summary:hover {
+  box-shadow: 0 0 18px rgba(0,184,255,0.08), inset 0 1px 0 rgba(255,255,255,0.08);
 }
-
-
-/* ============================================================
-   9. NAVBAR — FROSTED GLASS
-   ============================================================ */
-
-.navbar {
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(5,8,22,0.88),
-      rgba(11,17,32,0.70)
-    );
-
-  backdrop-filter:
-    blur(25px)
-    saturate(150%);
-
-  -webkit-backdrop-filter:
-    blur(25px)
-    saturate(150%);
-
-  border-bottom:
-    1px solid rgba(0,184,255,0.12);
-
-  box-shadow:
-
-    0 10px 50px rgba(0,0,0,0.30),
-
-    inset 0 -1px 0
-    rgba(255,255,255,0.04);
-
-}
-
-
-/* Navbar bottom diamond line */
-
-.navbar::after {
-
-  content: "";
-
-  position: absolute;
-
-  bottom: 0;
-
-  left: 10%;
-
-  width: 80%;
-
-  height: 1px;
-
-  background:
-
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(244,197,66,0.35),
-      rgba(0,184,255,0.45),
-      rgba(61,255,138,0.25),
-      transparent
-    );
-
-  box-shadow:
-    0 0 8px rgba(0,184,255,0.15);
-
-}
-
-
-/* ============================================================
-   10. NAVIGATION ACTIVE SHINE
-   ============================================================ */
-
-#navMenu a::after {
-
-  background:
-
-    linear-gradient(
-      90deg,
-      var(--cyan),
-      var(--gold)
-    );
-
-  box-shadow:
-    0 0 8px rgba(0,184,255,0.45);
-
-}
-
-
-#navMenu a.active {
-
-  color: var(--gold);
-
-  text-shadow:
-    0 0 8px rgba(244,197,66,0.25);
-
-}
-
-
-#navMenu a.active::after {
-
-  background: var(--gold);
-
-  box-shadow:
-    0 0 10px rgba(244,197,66,0.45);
-
-}
-
-
-/* ============================================================
-   11. CONNECT WALLET — GOLD CRYSTAL BUTTON
-   ============================================================ */
-
-.nav-connect-btn {
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--gold),
-      var(--gold-dark)
-    ) !important;
-
-  color:
-    var(--bg-primary) !important;
-
-  border:
-    1px solid
-    rgba(255,255,255,0.25) !important;
-
-  box-shadow:
-
-    inset 0 1px 0
-    rgba(255,255,255,0.35),
-
-    0 0 15px
-    rgba(244,197,66,0.18);
-
-}
-
-
-.nav-connect-btn:hover {
-
-  transform:
-    scale(1.05)
-    translateY(-2px) !important;
-
-  box-shadow:
-
-    0 0 20px
-    rgba(244,197,66,0.45),
-
-    0 10px 30px
-    rgba(0,0,0,0.30) !important;
-
-}
-
-
-/* ============================================================
-   12. FORM INPUT — GLASS
-   ============================================================ */
 
 .form-group input[type="text"],
 .form-group input[type="number"] {
-
-  background:
-
-    linear-gradient(
-      135deg,
-      rgba(0,0,0,0.32),
-      rgba(18,26,45,0.55)
-    );
-
-  border:
-    1px solid rgba(0,184,255,0.15);
-
-  backdrop-filter:
-    blur(12px);
-
-  -webkit-backdrop-filter:
-    blur(12px);
-
-  box-shadow:
-
-    inset 0 1px 0
-    rgba(255,255,255,0.035),
-
-    0 10px 25px
-    rgba(0,0,0,0.18);
-
+  background: linear-gradient(135deg, rgba(0,0,0,0.30), rgba(18,26,45,0.30));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.045), inset 0 -1px 0 rgba(0,184,255,0.025);
 }
-
 
 .form-group input[type="text"]:focus,
 .form-group input[type="number"]:focus {
-
-  border-color: var(--cyan);
-
-  box-shadow:
-
-    0 0 0 4px
-    rgba(0,184,255,0.06),
-
-    0 0 20px
-    rgba(0,184,255,0.12),
-
-    inset 0 1px 0
-    rgba(255,255,255,0.06);
-
+  box-shadow: 0 0 0 4px rgba(0,184,255,0.06), 0 0 18px rgba(0,184,255,0.10), inset 0 1px 0 rgba(255,255,255,0.06);
 }
-
-
-/* ============================================================
-   13. STAKE SUMMARY — GOLD GLASS
-   ============================================================ */
-
-.stake-summary {
-
-  background:
-
-    linear-gradient(
-      135deg,
-      rgba(18,26,45,0.62),
-      rgba(0,0,0,0.25)
-    );
-
-  border-left:
-    4px solid var(--gold);
-
-  border-top:
-    1px solid rgba(255,255,255,0.04);
-
-  border-right:
-    1px solid rgba(255,255,255,0.04);
-
-  border-bottom:
-    1px solid rgba(255,255,255,0.04);
-
-  backdrop-filter:
-    blur(12px);
-
-}
-
-
-.stake-summary:hover {
-
-  background:
-
-    linear-gradient(
-      135deg,
-      rgba(0,184,255,0.09),
-      rgba(18,26,45,0.60)
-    );
-
-  border-left-color:
-    var(--cyan);
-
-  box-shadow:
-    0 0 20px
-    rgba(0,184,255,0.08);
-
-}
-
-
-/* ============================================================
-   14. STAKE DETAILS
-   ============================================================ */
-
-.stake-details {
-
-  background:
-    rgba(0,0,0,0.18);
-
-  backdrop-filter:
-    blur(15px);
-
-  -webkit-backdrop-filter:
-    blur(15px);
-
-}
-
-
-.stake-details.active {
-
-  border:
-    1px solid
-    rgba(0,184,255,0.15);
-
-  box-shadow:
-    inset 0 1px 0
-    rgba(255,255,255,0.04);
-
-}
-
-
-/* ============================================================
-   15. STAKE ITEM — CYAN CRYSTAL
-   ============================================================ */
-
-.stake-item {
-
-  background:
-
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,0.045),
-      rgba(18,26,45,0.45)
-    );
-
-  border-left:
-    3px solid var(--cyan);
-
-  border-top:
-    1px solid rgba(255,255,255,0.04);
-
-  backdrop-filter:
-    blur(10px);
-
-}
-
-
-.stake-item:hover {
-
-  border-left-color:
-    var(--gold);
-
-  box-shadow:
-    0 0 15px
-    rgba(0,184,255,0.07);
-
-}
-
-
-/* ============================================================
-   16. PROGRESS BAR — GOLD + CYAN DIAMOND
-   ============================================================ */
-
-.progress-bar {
-
-  background:
-    rgba(255,255,255,0.08);
-
-  box-shadow:
-    inset 0 1px 4px rgba(0,0,0,0.45);
-
-}
-
-
-.progress-bar div {
-
-  background:
-
-    linear-gradient(
-      90deg,
-      var(--gold),
-      var(--cyan)
-    );
-
-  background-size:
-    200% 100%;
-
-  box-shadow:
-
-    0 0 8px
-    rgba(244,197,66,0.40),
-
-    0 0 18px
-    rgba(0,184,255,0.20);
-
-  animation:
-    progressDiamond 3s
-    linear infinite;
-
-}
-
-
-@keyframes progressDiamond {
-
-  0% {
-    background-position: 0% 50%;
-  }
-
-  100% {
-    background-position: 200% 50%;
-  }
-
-}
-
-
-/* ============================================================
-   17. REWARDS CARD
-   ============================================================ */
 
 .rewards-card {
-
-  background:
-
-    linear-gradient(
-      135deg,
-      rgba(0,0,0,0.20),
-      rgba(18,26,45,0.42)
-    );
-
-  border:
-    1px solid rgba(0,184,255,0.12);
-
-  backdrop-filter:
-    blur(12px);
-
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.045), inset 0 -1px 0 rgba(0,184,255,0.025);
 }
 
-
-.reward-label {
-
-  color: var(--cyan);
-
-  text-shadow:
-    0 0 7px rgba(0,184,255,0.20);
-
-}
-
-
-.reward-label::before {
-
-  content: '✦';
-
-  color: var(--gold);
-
-  text-shadow:
-    0 0 8px rgba(244,197,66,0.55);
-
-}
-
-
-.reward-value {
-
-  color: var(--gold);
-
-  text-shadow:
-
-    0 0 7px
-    rgba(244,197,66,0.30),
-
-    0 0 18px
-    rgba(244,197,66,0.10);
-
-}
-
-
+.reward-value,
 #pendingVntRewards,
 #pendingUsdtRewards {
-
-  color: var(--gold);
-
-  text-shadow:
-
-    0 0 8px
-    rgba(244,197,66,0.35),
-
-    0 0 20px
-    rgba(244,197,66,0.12);
-
+  text-shadow: 0 0 5px rgba(244,197,66,0.30), 0 0 14px rgba(244,197,66,0.08);
 }
 
+.progress-bar div {
+  background-size: 200% 100%;
+  box-shadow: 0 0 8px rgba(244,197,66,0.28), 0 0 14px rgba(0,184,255,0.14);
+  animation: vnsProgressDiamond 3s linear infinite;
+}
 
-/* ============================================================
-   18. PREMIUM BUTTON BASE
-   ============================================================ */
+@keyframes vnsProgressDiamond {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
 
 .btn,
-.wallet-connect-btn {
-
-  border:
-    1px solid
-    rgba(255,255,255,0.20);
-
-  box-shadow:
-
-    inset 0 1px 0
-    rgba(255,255,255,0.35),
-
-    0 10px 25px
-    rgba(0,0,0,0.20);
-
-  overflow: hidden;
-
+.wallet-connect-btn,
+#stakeBtn,
+#claimTokenBtn,
+#claimRewardsBtn,
+#approveMaxBtn {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -1px 0 rgba(0,0,0,0.08);
 }
-
-
-/* Moving shine inside buttons */
 
 .btn::before,
-.wallet-connect-btn::before {
-
-  content: "";
-
+.wallet-connect-btn::before,
+#stakeBtn::before,
+#claimTokenBtn::before,
+#claimRewardsBtn::before,
+#approveMaxBtn::before {
+  content: '';
   position: absolute;
-
-  top: -100%;
-
-  left: -80%;
-
-  width: 45%;
-
-  height: 300%;
-
-  background:
-
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,0.38),
-      transparent
-    );
-
-  transform:
-    rotate(25deg);
-
-  transition:
-    left 0.7s ease;
-
+  top: -120%;
+  left: -75%;
+  width: 32%;
+  height: 340%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), rgba(255,255,255,0.38), rgba(255,255,255,0.08), transparent);
+  transform: rotate(25deg);
   pointer-events: none;
-
+  z-index: 2;
+  animation: vnsButtonDiamond 6s ease-in-out infinite;
 }
 
-
-.btn:hover::before,
-.wallet-connect-btn:hover::before {
-
-  left: 140%;
-
+@keyframes vnsButtonDiamond {
+  0% { left: -75%; opacity: 0; }
+  25% { opacity: 0; }
+  45% { opacity: 0.75; }
+  60% { opacity: 0; }
+  100% { left: 145%; opacity: 0; }
 }
 
-
-/* ============================================================
-   19. GOLD BUTTON
-   ============================================================ */
-
-.btn,
-.wallet-connect-btn {
-
-  background:
-
-    linear-gradient(
-      135deg,
-      var(--gold),
-      var(--gold-dark)
-    );
-
-  color:
-    var(--bg-primary);
-
+.navbar {
+  background: linear-gradient(135deg, rgba(5,8,22,0.88), rgba(11,17,32,0.72));
+  backdrop-filter: blur(12px) saturate(125%);
+  -webkit-backdrop-filter: blur(12px) saturate(125%);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.28), inset 0 -1px 0 rgba(255,255,255,0.035);
 }
 
-
-.btn:hover,
-.wallet-connect-btn:hover {
-
-  box-shadow:
-
-    0 0 20px
-    rgba(244,197,66,0.40),
-
-    0 15px 35px
-    rgba(0,0,0,0.30);
-
+.navbar::after {
+  content: '';
+  position: absolute;
+  left: 10%;
+  bottom: 0;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(244,197,66,0.24), rgba(0,184,255,0.30), rgba(61,255,138,0.18), transparent);
+  pointer-events: none;
 }
-
-
-/* ============================================================
-   20. STAKE BUTTON — ORIGINAL CYAN
-   ============================================================ */
-
-#stakeBtn {
-
-  background:
-
-    linear-gradient(
-      135deg,
-      var(--cyan),
-      var(--cyan-dark)
-    );
-
-  color:
-    var(--white);
-
-  box-shadow:
-    0 0 15px
-    rgba(0,184,255,0.12);
-
-}
-
-
-#stakeBtn:hover {
-
-  box-shadow:
-
-    0 0 25px
-    rgba(0,184,255,0.45),
-
-    0 15px 35px
-    rgba(0,0,0,0.25);
-
-}
-
-
-/* ============================================================
-   21. CLAIM BUTTON — ORIGINAL GREEN
-   ============================================================ */
-
-#claimTokenBtn,
-#claimRewardsBtn {
-
-  background:
-
-    linear-gradient(
-      135deg,
-      var(--green),
-      var(--green-dark)
-    );
-
-  color:
-    var(--bg-primary);
-
-}
-
-
-#claimTokenBtn:hover,
-#claimRewardsBtn:hover {
-
-  box-shadow:
-
-    0 0 25px
-    rgba(61,255,138,0.40),
-
-    0 15px 35px
-    rgba(0,0,0,0.25);
-
-}
-
-
-/* ============================================================
-   22. APPROVE BUTTON — GOLD
-   ============================================================ */
-
-#approveMaxBtn {
-
-  background:
-
-    linear-gradient(
-      135deg,
-      var(--gold),
-      var(--gold-dark)
-    );
-
-  color:
-    var(--bg-primary);
-
-}
-
-
-/* ============================================================
-   23. TEAM CARD
-   ============================================================ */
-
-.team-stat {
-
-  background:
-
-    linear-gradient(
-      135deg,
-      rgba(0,0,0,0.20),
-      rgba(18,26,45,0.40)
-    );
-
-  border:
-    1px solid rgba(255,255,255,0.04);
-
-  backdrop-filter:
-    blur(10px);
-
-}
-
-
-.team-stat .label {
-
-  color: var(--cyan);
-
-}
-
-
-.team-stat .value {
-
-  color: var(--gold);
-
-  text-shadow:
-    0 0 7px rgba(244,197,66,0.20);
-
-}
-
-
-/* ============================================================
-   24. LEVEL MEMBER LIST
-   ============================================================ */
-
-.level-members-list {
-
-  background:
-    rgba(0,0,0,0.18);
-
-  backdrop-filter:
-    blur(12px);
-
-}
-
-
-.level-members-list.active {
-
-  border:
-    1px solid
-    rgba(0,184,255,0.15);
-
-}
-
-
-/* ============================================================
-   25. UNLOCKED STATUS — ORIGINAL GREEN
-   ============================================================ */
-
-.status-unlocked {
-
-  color: var(--green);
-
-  background:
-    rgba(61,255,138,0.08);
-
-  border:
-    1px solid
-    rgba(61,255,138,0.15);
-
-  box-shadow:
-    0 0 12px
-    rgba(61,255,138,0.08);
-
-}
-
-
-/* ============================================================
-   26. LOCKED STATUS
-   Original red maintained
-   ============================================================ */
-
-.status-locked {
-
-  color: #ff6b6b;
-
-  background:
-    rgba(255,70,70,0.08);
-
-  border:
-    1px solid
-    rgba(255,70,70,0.12);
-
-}
-
-
-/* ============================================================
-   27. MODAL — GLASS DIAMOND
-   ============================================================ */
-
-.modal {
-
-  background:
-    rgba(0,0,0,0.72);
-
-  backdrop-filter:
-    blur(12px);
-
-  -webkit-backdrop-filter:
-    blur(12px);
-
-}
-
 
 .modal-content {
-
-  background:
-
-    linear-gradient(
-      135deg,
-      rgba(11,17,32,0.88),
-      rgba(18,26,45,0.72)
-    );
-
-  border:
-    1px solid
-    rgba(0,184,255,0.18);
-
-  backdrop-filter:
-    blur(25px)
-    saturate(140%);
-
-  -webkit-backdrop-filter:
-    blur(25px)
-    saturate(140%);
-
-  box-shadow:
-
-    0 30px 90px
-    rgba(0,0,0,0.55),
-
-    inset 0 1px 0
-    rgba(255,255,255,0.08);
-
+  background: linear-gradient(135deg, rgba(11,17,32,0.90), rgba(18,26,45,0.78));
+  backdrop-filter: blur(12px) saturate(125%);
+  -webkit-backdrop-filter: blur(12px) saturate(125%);
+  box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,0.07);
 }
-
-
-/* Modal crystal top edge */
 
 .modal-content::before {
-
-  content: "";
-
+  content: '';
   position: absolute;
-
   top: 0;
-
   left: 8%;
-
   width: 84%;
-
   height: 1px;
-
-  background:
-
-    linear-gradient(
-      90deg,
-      transparent,
-      var(--cyan),
-      var(--gold),
-      transparent
-    );
-
-  box-shadow:
-    0 0 8px rgba(0,184,255,0.25);
-
+  background: linear-gradient(90deg, transparent, rgba(0,184,255,0.28), rgba(244,197,66,0.28), transparent);
 }
-
-
-/* ============================================================
-   28. CLOSE BUTTON
-   ============================================================ */
-
-.close-modal:hover {
-
-  color:
-    var(--gold);
-
-  text-shadow:
-    0 0 10px
-    rgba(244,197,66,0.45);
-
-  transform:
-    rotate(90deg);
-
-}
-
-
-/* ============================================================
-   29. SCROLLBAR — ORIGINAL CYAN + GOLD HOVER
-   ============================================================ */
-
-::-webkit-scrollbar {
-
-  width: 6px;
-
-}
-
-
-::-webkit-scrollbar-track {
-
-  background:
-    var(--bg-primary);
-
-}
-
-
-::-webkit-scrollbar-thumb {
-
-  background:
-    var(--cyan);
-
-  border-radius:
-    10px;
-
-  box-shadow:
-    0 0 8px
-    rgba(0,184,255,0.35);
-
-}
-
-
-::-webkit-scrollbar-thumb:hover {
-
-  background:
-    var(--gold);
-
-  box-shadow:
-    0 0 10px
-    rgba(244,197,66,0.40);
-
-}
-
-
-/* ============================================================
-   30. MOBILE GLASS MENU
-   ============================================================ */
-
-@media (max-width: 900px) {
-
-  #navMenu {
-
-    background:
-
-      linear-gradient(
-        135deg,
-        rgba(11,17,32,0.90),
-        rgba(18,26,45,0.78)
-      );
-
-    backdrop-filter:
-      blur(25px)
-      saturate(140%);
-
-    -webkit-backdrop-filter:
-      blur(25px)
-      saturate(140%);
-
-    border:
-      1px solid
-      rgba(0,184,255,0.16);
-
-    box-shadow:
-
-      0 25px 70px
-      rgba(0,0,0,0.55),
-
-      0 0 20px
-      rgba(0,184,255,0.06);
-
-  }
-
-}
-
-
-/* ============================================================
-   31. MOBILE MENU BUTTON
-   ============================================================ */
-
-.mobile-menu-btn {
-
-  color:
-    var(--gold);
-
-  text-shadow:
-    0 0 10px
-    rgba(244,197,66,0.35);
-
-}
-
-
-.mobile-menu-btn:hover {
-
-  color:
-    var(--cyan);
-
-  text-shadow:
-    0 0 10px
-    rgba(0,184,255,0.40);
-
-}
-
-
-/* ============================================================
-   32. SPECIAL DIAMOND SHINE CLASS
-   ------------------------------------------------------------
-   Agar kisi particular element ko extra diamond shine dena ho:
-
-   class="diamond-shine"
-
-   Example:
-
-   <div class="card diamond-shine">
-       ...
-   </div>
-   ============================================================ */
 
 .diamond-shine {
-
   position: relative;
-
   overflow: hidden;
-
 }
-
 
 .diamond-shine::before {
-
-  content: "";
-
+  content: '';
   position: absolute;
-
   top: -120%;
-
-  left: -80%;
-
-  width: 40%;
-
+  left: -75%;
+  width: 32%;
   height: 340%;
-
-  background:
-
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,0.08),
-      rgba(255,255,255,0.45),
-      rgba(255,255,255,0.08),
-      transparent
-    );
-
-  transform:
-    rotate(25deg);
-
-  animation:
-    diamondElementShine 6s
-    ease-in-out infinite;
-
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), rgba(255,255,255,0.38), rgba(255,255,255,0.06), transparent);
+  transform: rotate(25deg);
   pointer-events: none;
-
   z-index: 20;
-
+  animation: vnsDiamondClassSweep 7s ease-in-out infinite;
 }
 
-
-@keyframes diamondElementShine {
-
-  0% {
-
-    left: -80%;
-
-    opacity: 0;
-
-  }
-
-  30% {
-
-    opacity: 0;
-
-  }
-
-  45% {
-
-    opacity: 0.8;
-
-  }
-
-  60% {
-
-    opacity: 0;
-
-  }
-
-  100% {
-
-    left: 150%;
-
-    opacity: 0;
-
-  }
-
+@keyframes vnsDiamondClassSweep {
+  0% { left: -75%; opacity: 0; }
+  30% { opacity: 0; }
+  48% { opacity: 0.75; }
+  62% { opacity: 0; }
+  100% { left: 145%; opacity: 0; }
 }
-
-
-/* ============================================================
-   33. CRYSTAL BORDER CLASS
-   ============================================================ */
 
 .crystal-border {
-
-  border:
-    1px solid transparent !important;
-
-  background:
-
-    linear-gradient(
-      rgba(18,26,45,0.72),
-      rgba(18,26,45,0.72)
-    ) padding-box,
-
-    linear-gradient(
-      135deg,
-      rgba(0,184,255,0.35),
-      rgba(244,197,66,0.35),
-      rgba(61,255,138,0.20),
-      rgba(0,184,255,0.15)
-    ) border-box;
-
+  border-color: rgba(0,184,255,0.24) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,184,255,0.03), var(--shadow-lg);
 }
-
-
-/* ============================================================
-   34. GOLD CRYSTAL TEXT
-   ============================================================ */
-
-.gold-diamond-text {
-
-  color:
-    var(--gold);
-
-  text-shadow:
-
-    0 0 5px
-    rgba(244,197,66,0.35),
-
-    0 0 15px
-    rgba(244,197,66,0.12);
-
-}
-
-
-/* ============================================================
-   35. CYAN CRYSTAL TEXT
-   ============================================================ */
-
-.cyan-diamond-text {
-
-  color:
-    var(--cyan);
-
-  text-shadow:
-
-    0 0 5px
-    rgba(0,184,255,0.35),
-
-    0 0 15px
-    rgba(0,184,255,0.12);
-
-}
-
-
-/* ============================================================
-   36. GREEN CRYSTAL TEXT
-   ============================================================ */
-
-.green-diamond-text {
-
-  color:
-    var(--green);
-
-  text-shadow:
-
-    0 0 5px
-    rgba(61,255,138,0.35),
-
-    0 0 15px
-    rgba(61,255,138,0.12);
-
-}
-
-
-/* ============================================================
-   37. SELECTION
-   ============================================================ */
-
-::selection {
-
-  background:
-    rgba(0,184,255,0.25);
-
-  color:
-    var(--white);
-
-}
-
-
-/* ============================================================
-   38. REDUCED MOTION
-   ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-
-    animation-duration:
-      0.01ms !important;
-
-    animation-iteration-count:
-      1 !important;
-
-    transition-duration:
-      0.01ms !important;
-
+  .card::after,
+  .stake-card::after,
+  .team-card::after,
+  .rewards-section::after,
+  .btn::before,
+  .wallet-connect-btn::before,
+  #stakeBtn::before,
+  #claimTokenBtn::before,
+  #claimRewardsBtn::before,
+  #approveMaxBtn::before {
+    animation: none !important;
   }
-
 }
